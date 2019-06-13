@@ -11,7 +11,7 @@ $StringBuilder.ToString()
 Function Check-Breached([String] $password)
 {
     $thehash = Get-StringHash -String $password -HashName SHA1
-    $header = @{ "user-agent" = "Powershell password has query script github.com/pas3n7"}
+    $header = @{ "user-agent" = "Powershell password hash query script github.com/pas3n7"}
     $firstfive = $thehash.substring(0,5)
     $suffix = $thehash.Substring(5,35)
     $response = Invoke-WebRequest -Headers $header -Uri "https://api.pwnedpasswords.com/range/$firstfive" -Method GET
